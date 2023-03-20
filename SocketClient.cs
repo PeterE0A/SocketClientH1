@@ -7,12 +7,15 @@ namespace SocketClientH1
     {
         public SocketClient()
         {
-            IPAddress serverIp = GetServerIpAddress();
+            //IPAddress serverIp = GetServerIpAddress();
+            IPAddress serverIp = IPAddress.Parse("192.168.2.3");
+
             IPEndPoint endPoint = new IPEndPoint(serverIp, 11000);
-            StartClient(endPoint);
+
+            while (true) StartClient(GetMessage(), endPoint);
         }
 
-        private void StartClient(IPEndPoint endPoint)
+        private void StartClient(string msg, IPEndPoint endPoint)
         {
             Socket sender = new(
                 endPoint.AddressFamily,
@@ -21,9 +24,10 @@ namespace SocketClientH1
 
             sender.Connect(endPoint);
 
-            string msg = GetMessage();
             byte[] byteArray = System.Text.Encoding.ASCII.GetBytes(msg);
             sender.Send(byteArray);
+            sender.Shutdown(SocketShutdown.Both);
+            sender.Close();
         }
 
         private string GetMessage()
@@ -34,8 +38,8 @@ namespace SocketClientH1
 
         private IPAddress GetServerIpAddress()
         {
-            
-            IPAddress? iP = null;
+
+            IPAddress iP = IPAddress.Parse("192.168.2.3");
             do
             {
                 Console.Write("Input server IP: ");
