@@ -9,7 +9,7 @@ namespace SocketClientH1
         {
             IPAddress serverIp = GetServerIpAddress();
             IPEndPoint endPoint = new IPEndPoint(serverIp, 11000);
-            StartClient(endPoint);
+            while(true) StartClient(endPoint);
         }
 
         private void StartClient(IPEndPoint endPoint)
