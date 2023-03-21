@@ -20,6 +20,12 @@ namespace SocketClientH1
 
             byte[] byteArray = System.Text.Encoding.ASCII.GetBytes(msg);
             sender.Send(byteArray);
+
+            byte[] msgFromServer = new byte[1024];
+            sender.Receive(msgFromServer);
+            string msgRecieved = System.Text.Encoding.ASCII.GetString(msgFromServer);
+            Console.WriteLine($"Message from server: {msgRecieved}");
+
             sender.Shutdown(SocketShutdown.Both);
             sender.Close();
         }
