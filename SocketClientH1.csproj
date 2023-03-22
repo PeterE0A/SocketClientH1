@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SocketServerH1e\SocketServerH1.csproj" />
+  </ItemGroup>
+
 </Project>

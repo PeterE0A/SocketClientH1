@@ -1,11 +1,16 @@
-﻿namespace SocketClientH1
+﻿
+
+using Grpc.Core;
+
+namespace SocketClientH1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, ClientWorld!");
-            SocketClient socketClient = new();
+            var client = new Client("localhost", 11000);
+            client.Start();
+
         }
     }
 }
